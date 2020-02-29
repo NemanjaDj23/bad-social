@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
+use Auth;
+use App\User; 
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +27,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = Post::orderBy('created_at', 'desc')->get();
+
+        return view('home', array(
+            'posts' => $posts,
+        ));
+    }
+
+    public function publish()
+    {
+        $content = request('content');
+        $id = Auth::user()->id;
+
+        if (!empty($content)) {
+            $post = new Post;
+            $post->user_id = $id;
+            $post->content = $content;
+            $post->save();
+
+            return redirect('/home')->with('success', 'Post published!');
+        }
+        else {
+            return redirect('/home')->with('error', 'Nothing to publish!');
+        }
     }
 }
