@@ -31,7 +31,7 @@
                 <div class="card-body">
                     @foreach($posts as $post)
                         <h5 class="m-0"><a href="profile/{{ $post->user_id }}" class="text-dark font-weight-bolder text-decoration-none">{{ $post->user->username}}</a></h5>
-                        <small><a href="/profile/{{ $post->user_id }}" class="text-secondary text-decoration-none">{{$post->user->name}}</a></small>
+                        <small><a href="/profile/{{ $post->user_id }}" class="text-secondary text-decoration-none">{{$post->user->name}} {{$post->user->surname}}</a></small>
                         <a href="/posts/{{$post->id}}" class="text-decoration-none">
                             <p class="text-dark mt-2 p-2 border rounded-sm">{{ $post->content }}</p>
                         </a>

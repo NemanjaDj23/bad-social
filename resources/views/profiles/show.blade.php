@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <h4 class="card-title mb-1">{{$user->name }}</h4>
+                            <h4 class="card-title mb-1">{{ $user->name }} {{ $user->surname }}</h4>
                             <p class="card-text text-secondary">Your occupation</p>
                         </div>
                     </div>
@@ -48,13 +48,13 @@
                 @if ($user->id == Auth::user()->id)
                     <div class="card-header">Your posts</div>
                 @else
-                    <div class="card-header">Posts by {{ $user->name }}</div>
+                    <div class="card-header">Posts by {{ $user->name }} </div>
                 @endif
                 
                 <div class="card-body">
                     @foreach($posts as $post)
                         <h5 class="m-0 font-weight-bolder">{{ $post->user->username }}</h5>
-                        <small class="text-secondary">{{ $post->user->name }}</small>
+                        <small class="text-secondary">{{ $post->user->name }} {{ $post->user->surname }}</small>
                         <a href="/posts/{{$post->id}}" class="text-decoration-none">
                             <p class="text-dark mt-2 p-2 border rounded-sm">{{ $post->content }}</p>
                         </a>
