@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Auth;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function __construct()
     {
@@ -24,10 +24,10 @@ class PostsController extends Controller
             $post->content = $content;
             $post->save();
 
-            return redirect('/index')->with('success', 'Post published!');
+            return back()->with('success', 'Post published!');
         }
         else {
-            return redirect('/index')->with('error', 'Nothing to publish!');
+            return back()->with('error', 'Nothing to publish!');
         }
     }
 

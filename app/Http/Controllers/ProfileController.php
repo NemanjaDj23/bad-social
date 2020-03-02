@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 
-class ProfilesController extends Controller
+class ProfileController extends Controller
 {
     public function __construct()
     {
@@ -37,5 +37,4 @@ class ProfilesController extends Controller
     {
         return view('profiles.edit', compact($user));
     }
-
 }

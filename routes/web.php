@@ -17,10 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/index', 'PostsController@store');
-Route::get('/index', 'PostsController@create')->name('posts.create');
-Route::get('/index', 'ProfilesController@index')->name('profiles.index');
-Route::get('/profile/{user}', 'ProfilesController@show')->name('profiles.show');
-Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profiles.edit');
-//Route::get('/profile/{user}', 'ProfilesController@update')->name('profiles.update');
-Route::get('/posts/{post}', 'PostsController@show')->name('posts.show');
+Route::post('/index', 'PostController@store');
+Route::get('/index', 'PostController@create')->name('posts.create');
+Route::get('/index', 'ProfileController@index')->name('profiles.index');
+Route::get('/profile/{user}', 'ProfileController@show')->name('profiles.show');
+Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
+//Route::get('/profile/{user}', 'ProfileController@update')->name('profiles.update');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+Route::post('/comment/store', 'CommentController@store')->name('comment.store');
