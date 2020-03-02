@@ -16,7 +16,7 @@
 
                     <form action="/index" method="post">
                         @csrf
-                        <textarea name="content" cols="30" rows="10" class="form-control"
+                        <textarea name="content" cols="30" rows="4" class="form-control"
                         placeholder="What's on your mind...">
                         </textarea>
                         <br>
@@ -30,9 +30,10 @@
 
                 <div class="card-body">
                     @foreach($posts as $post)
-                        <h5><a href="profile/{{ $post->user_id }}">{{ $post->user->name }} ({{ $post->user->username}})</a></h5>
+                        <h5 class="m-0"><a href="profile/{{ $post->user_id }}" class="text-dark font-weight-bolder text-decoration-none">{{ $post->user->username}}</a></h5>
+                        <small><a href="/profile/{{ $post->user_id }}" class="text-secondary text-decoration-none">{{$post->user->name}}</a></small>
                         <a href="/posts/{{$post->id}}" class="text-decoration-none">
-                            <p class="text-dark p-2 border rounded-sm">{{ $post->content }}</p>
+                            <p class="text-dark mt-2 p-2 border rounded-sm">{{ $post->content }}</p>
                         </a>
                         <small>{{ $post->created_at->format("d.m.Y.") }}</small>
                         <small>{{ $post->created_at->diffForHumans() }}</small>

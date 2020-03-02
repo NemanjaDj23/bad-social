@@ -32,4 +32,10 @@ class ProfilesController extends Controller
             'posts' => $posts,
         ));
     }
+
+    public function edit(User $user) 
+    {
+        return view('profiles.edit', compact($user));
+    }
+
 }
