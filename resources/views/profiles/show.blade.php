@@ -20,9 +20,9 @@
                         <p class="card-text text-secondary">Some description text, abot youihgh gier gerhgrehgijerioj
                          re erijeir gej gejroj goreoj goerj g ieorjoej ogrj eigj oiejr gojeiojg oeij </p>
 
-                    @if ($user->id == Auth::user()->id)
-                        <a href="/profile/{{ $user->id }}/edit" class="ml-auto btn btn-danger">Edit profile</a>
-                    @endif
+                        @if ($user->id == Auth::user()->id)
+                            <a href="/profile/{{ $user->id }}/edit" class="ml-auto btn btn-danger">Edit profile</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -37,14 +37,14 @@
                             @elseif(session()->has('error'))
                                 <div class='alert alert-danger'>{{ session()->get('error') }}</div>
                         @endif
-                        
+
                         <form action="/index" method="post">
                             @csrf
                             <textarea name="content" cols="30" rows="4" class="form-control"
                             placeholder="What's on your mind...">
                             </textarea>
                             <br>
-                            <input type="submit" class="btn btn-danger" value="POST">
+                            <input type="submit" class="btn btn-danger" value="Create post">
                         </form>
                     </div>
                 </div>
@@ -65,8 +65,17 @@
                             <a href="/posts/{{$post->id}}" class="text-decoration-none">
                                 <p class="text-dark mt-2 p-2">{{ $post->content }}</p>
                             </a>
-                            <small>{{ $post->created_at->format("d.m.Y.") }}</small>
+                            <small>Written on {{ $post->created_at->format("d.m.Y.") }}</small>
                             <small>{{ $post->created_at->diffForHumans() }}</small>
+
+                            <div class="d-flex">
+                                @if ($post->user->id == Auth::user()->id)
+                                    <div class="ml-auto">
+                                        <a href="/posts/{{$post->id}}/edit" class="btn btn-danger">Edit post</a>
+                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger ml-2">Delete post</a>
+                                    </div>
+                                @endif
+                            </div>
                             <br><br>
 
                             <h5>Comments:</h5>
@@ -80,7 +89,7 @@
                             @endforeach
                             <br>
 
-                            <form method="post" action="#">
+                            <form method="post" action="{{ route('comment.store') }}">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="comment_body" class="form-control" placeholder="Add comment..."/>

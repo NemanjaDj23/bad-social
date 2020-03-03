@@ -24,4 +24,7 @@ Route::get('/profile/{user}', 'ProfileController@show')->name('profiles.show');
 Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
 //Route::get('/profile/{user}', 'ProfileController@update')->name('profiles.update');
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::patch('/posts/{post}', 'PostController@update')->name('posts.update');
+Route::get('/posts/post/delete/{id}', 'PostController@delete')->name('post.delete');
 Route::post('/comment/store', 'CommentController@store')->name('comment.store');

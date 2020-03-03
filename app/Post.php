@@ -8,6 +8,14 @@ class Post extends Model
 {
     public $timestamps = true;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($post) {
+            $post->comments()->delete();
+        });
+    }
 
     public function user()
     {
