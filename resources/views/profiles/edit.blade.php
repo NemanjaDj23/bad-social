@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="#" enctype="multipart/form-data" method="post">
+    <form action="/profile/{{ $user->id }}" method="post">
         @csrf
         @method('PATCH')
         <div class="row">
@@ -12,37 +12,18 @@
                     <h3>Edit Profile</h3>
                 </div>
 
-
                 <div class="form-group row">
                     <label for="occupation" class="col-form-label">Occupation</label>
-
-                    <input id="occupation" type="occupation" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ old('occupation') }}" autocomplete="occupation">
-
-                    @error('occupation')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <input type="text" name="occupation" class="form-control" placeholder="Something about your occupation..." value="{{ old('title') ?? $user->profile->occupation}}">
                 </div>
+
                 <div class="form-group row">
                     <label for="description" class="col-form-label">Description</label>
-
-                    <input id="description" type="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autocomplete="description">
-
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group row">
-                    <label for="image" class="col-form-label">Profile image</label>
-                    <input type="file" class="form-control-file " id="image" name="image">
+                    <textarea name="description" cols="30" rows="4" class="form-control" placeholder="Something about you...">{{ old('title') ?? $user->profile->description}}</textarea>
                 </div>
 
                 <div class="flex-d row">
-                    <div class="ml-auto">
+                    <div class="ml-auto mt-3">
                         <button class="btn btn-danger">Save profile</button>
                     </div>
                 </div>

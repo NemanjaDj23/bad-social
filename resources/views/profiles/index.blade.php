@@ -31,13 +31,21 @@
                 <div class="card-body">
                     @foreach($posts as $post)
                         <div class="p-3 border rounded-sm">
-                            <h5 class="m-0"><a href="profile/{{ $post->user_id }}" class="text-dark font-weight-bolder text-decoration-none">{{ $post->user->username}}</a></h5>
-                            <small><a href="/profile/{{ $post->user_id }}" class="text-secondary text-decoration-none">{{$post->user->name}} {{$post->user->surname}}</a></small>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-2 p-4">
+                                    <a href="profile/{{ $post->user_id }}"><img src="/images/default-avatar.png" class="card-img rounded-circle" alt="defoult profil avatar"><a>
+                                </div>
+                                <div >
+                                    <h5 class="m-0"><a href="profile/{{ $post->user_id }}" class="text-dark font-weight-bolder text-decoration-none">{{ $post->user->username}}</a></h5>
+                                    <small><a href="/profile/{{ $post->user_id }}" class="text-secondary text-decoration-none">{{$post->user->name}} {{$post->user->surname}}</a></small>
+                                </div>
+                            </div>
+                            
                             <a href="/posts/{{$post->id}}" class="text-decoration-none">
                                 <p class="text-dark mt-2">{{ $post->content }}</p>
                             </a>
-                            <small>Written on {{ $post->created_at->format("d.m.Y.") }}</small>
-                            <small>{{ $post->created_at->diffForHumans() }}</small>
+                            <small>Written on {{ $post->updated_at->format("d.m.Y.") }}</small>
+                            <small>{{ $post->updated_at->diffForHumans() }}</small>
 
                             <div class="d-flex">
                                 @if ($post->user->id == Auth::user()->id)
@@ -54,7 +62,7 @@
                             <hr>
                             @foreach($post->comments as $comment)
                                 <div class="display-comment">
-                                    <strong>{{ $comment->user->name }}</strong>
+                                    <a href="profile/{{ $comment->user->id }}" class="text-dark text-decoration-none"><strong>{{ $comment->user->name }}</strong></a>
                                     <p>{{ $comment->content }}</p>
                                 </div>
                                 <hr>

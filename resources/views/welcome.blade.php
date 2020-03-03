@@ -80,7 +80,7 @@
             @endif
 
             <div class="content d-flax flex-row justify-content-center">
-                <div class="col-md-4"><img src="/icon/bad-logo.ico" alt="badsocial-logo" class="pr-2"></div>
+                <div class="col-md-4"><img src="/images/bad-logo.png" alt="badsocial-logo" class="pr-2"></div>
                 <div class="col-md-4 title m-b-md">
                     BadSocial
                 </div>

@@ -12,13 +12,12 @@
                     <div class="col-md-9">
                         <div class="card-body">
                             <h4 class="card-title mb-1">{{ $user->name }} {{ $user->surname }}</h4>
-                            <p class="card-text text-secondary">Your occupation</p>
+                            <p class="card-text text-secondary">{{$user->profile->occupation}}</p>
                         </div>
                     </div>
                     <div class="d-flex flex-column col-md-12 p-4">
                         <h5 class="card-title">About</h5>
-                        <p class="card-text text-secondary">Some description text, abot youihgh gier gerhgrehgijerioj
-                         re erijeir gej gejroj goreoj goerj g ieorjoej ogrj eigj oiejr gojeiojg oeij </p>
+                        <p class="card-text text-secondary">{{$user->profile->description}} </p>
 
                         @if ($user->id == Auth::user()->id)
                             <a href="/profile/{{ $user->id }}/edit" class="ml-auto btn btn-danger">Edit profile</a>
@@ -60,13 +59,21 @@
                 <div class="card-body">
                     @foreach($posts as $post)
                         <div class="p-3 border rounded-sm">
-                            <h5 class="m-0 font-weight-bolder">{{ $post->user->username }}</h5>
-                            <small class="text-secondary">{{ $post->user->name }} {{ $post->user->surname }}</small>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-2 p-4">
+                                    <img src="/images/default-avatar.png" class="card-img rounded-circle" alt="defoult profil avatar">
+                                </div>
+                                <div >
+                                    <h5 class="m-0 font-weight-bolder">{{ $post->user->username }}</h5>
+                                    <small class="text-secondary">{{ $post->user->name }} {{ $post->user->surname }}</small>
+                                </div>
+                            </div>
+                            
                             <a href="/posts/{{$post->id}}" class="text-decoration-none">
-                                <p class="text-dark mt-2 p-2">{{ $post->content }}</p>
+                                <p class="text-dark mt-2">{{ $post->content }}</p>
                             </a>
-                            <small>Written on {{ $post->created_at->format("d.m.Y.") }}</small>
-                            <small>{{ $post->created_at->diffForHumans() }}</small>
+                            <small>Written on {{ $post->updated_at->format("d.m.Y.") }}</small>
+                            <small>{{ $post->updated_at->diffForHumans() }}</small>
 
                             <div class="d-flex">
                                 @if ($post->user->id == Auth::user()->id)
@@ -82,7 +89,7 @@
                             <hr>
                             @foreach($post->comments as $comment)
                                 <div class="display-comment">
-                                    <strong>{{ $comment->user->name }}</strong>
+                                    <a href="/profile/{{ $comment->user->id }}" class="text-dark text-decoration-none"><strong>{{ $comment->user->name }}</strong></a>
                                     <p>{{ $comment->content }}</p>
                                 </div>
                                 <hr>

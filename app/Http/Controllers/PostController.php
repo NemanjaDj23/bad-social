@@ -49,7 +49,7 @@ class PostController extends Controller
 
         if(!empty($content))
         {
-            $post->content = $content;
+            $post->content = $content; 
             $post->update();
 
             return redirect('/index')->with('success', 'Post has been updated successfully!');
