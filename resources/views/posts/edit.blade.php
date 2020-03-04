@@ -13,7 +13,9 @@
                         @csrf
                         <textarea name="content" cols="30" rows="4" class="form-control" placeholder="What's on your mind...">{{$post->content}}</textarea>
                         <br>
-                        <input type="submit" class="btn btn-danger" value="Update post">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-edit"></i> Update post
+                        </button>
                     </form>
                 </div>
             </div>

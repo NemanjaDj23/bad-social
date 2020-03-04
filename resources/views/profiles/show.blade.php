@@ -4,10 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <!-- Profile info -->
             <div class="card mb-3">
                 <div class="row no-gutters flex-d align-items-end">
                     <div class="col-md-3 p-4">
-                        <img src="/images/default-avatar.png" class="card-img" alt="defoult profil avatar">
+                        <a href="#" class="profile-img">
+                            <img src="/images/default-avatar.png" class="card-img" alt="defoult profil avatar">
+                            @if ($user->id == Auth::user()->id)
+                                <p class="rounded-pill px-2 py-1  profile-img__upload">Add image</p>
+                            @endif
+                        </a>
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
@@ -18,14 +24,14 @@
                     <div class="d-flex flex-column col-md-12 p-4">
                         <h5 class="card-title">About</h5>
                         <p class="card-text text-secondary">{{$user->profile->description}} </p>
-
                         @if ($user->id == Auth::user()->id)
-                            <a href="/profile/{{ $user->id }}/edit" class="ml-auto btn btn-danger">Edit profile</a>
+                            <a href="/profile/{{ $user->id }}/edit" class="ml-auto btn btn-danger"><i class="fas fa-user-edit"></i> Edit profile</a>
                         @endif
                     </div>
                 </div>
             </div>
-
+            
+            <!-- Create post -->
             @if ($user->id == Auth::user()->id)
                 <div class="card">
                     <div class="card-header">Make a post</div>
@@ -43,12 +49,16 @@
                             placeholder="What's on your mind...">
                             </textarea>
                             <br>
-                            <input type="submit" class="btn btn-danger" value="Create post">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-pencil-alt"></i> Create post
+                            </button>
                         </form>
                     </div>
                 </div>
             @endif
             <br>
+
+            <!-- Show posts -->
             <div class="card">
                 @if ($user->id == Auth::user()->id)
                     <div class="card-header">Your posts</div>
@@ -78,13 +88,14 @@
                             <div class="d-flex">
                                 @if ($post->user->id == Auth::user()->id)
                                     <div class="ml-auto">
-                                        <a href="/posts/{{$post->id}}/edit" class="btn btn-danger">Edit post</a>
-                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger ml-2">Delete post</a>
+                                        <a href="/posts/{{$post->id}}/edit" class="btn btn-danger"><i class="fas fa-pencil-alt"></i> Edit post</a>
+                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger ml-2"> <i class="fas fa-trash"></i> Delete post</a>
                                     </div>
                                 @endif
                             </div>
                             <br><br>
 
+                            <!-- Show comments -->
                             <h5>Comments:</h5>
                             <hr>
                             @foreach($post->comments as $comment)
@@ -96,6 +107,7 @@
                             @endforeach
                             <br>
 
+                            <!-- Add comment -->
                             <form method="post" action="{{ route('comment.store') }}">
                                 @csrf
                                 <div class="form-group">
@@ -103,13 +115,14 @@
                                     <input type="hidden" name="post_id" value="{{ $post->id }}" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-danger" value="Add Comment" />
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-pencil-alt"></i> Add Comment
+                                    </button>
                                 </div>
                             </form>
                         </div>
                         <hr>
-                        <br><br>
-                        
+                        <br><br>    
                     @endforeach
                 </div>
             </div>

@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <!-- Create post -->
             <div class="card">
                 <div class="card-header">Make a post</div>
 
@@ -20,11 +22,15 @@
                         placeholder="What's on your mind...">
                         </textarea>
                         <br>
-                        <input type="submit" class="btn btn-danger" value="Create post">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-pencil-alt"></i> Create post
+                        </button>
                     </form>
                 </div>
             </div>
             <br>
+
+            <!-- Show posts -->
             <div class="card">
                 <div class="card-header">Posts</div>
 
@@ -50,14 +56,14 @@
                             <div class="d-flex">
                                 @if ($post->user->id == Auth::user()->id)
                                     <div class="ml-auto">
-                                        <a href="/posts/{{$post->id}}/edit" class="btn btn-danger">Edit post</a>
-                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger ml-2">Delete post</a>
+                                        <a href="/posts/{{$post->id}}/edit" class="btn btn-danger"><i class="fas fa-pencil-alt"></i> Edit post</a>
+                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger ml-2"> <i class="fas fa-trash"></i> Delete post</a>
                                     </div>
                                 @endif
                             </div>
-                            
                             <br><br>
 
+                            <!-- Show comments -->
                             <h5>Comments:</h5>
                             <hr>
                             @foreach($post->comments as $comment)
@@ -69,14 +75,17 @@
                             @endforeach
                             <br>
 
+                            <!-- Add comment -->
                             <form method="post" action="{{ route('comment.store') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="comment_body" class="form-control" placeholder="Add comment..."/>
-                                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                    <input type="text" name="comment_body" class="form-control" placeholder="Add comment...">
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-danger" value="Add Comment" />
+                                    <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-pencil-alt"></i> Add Comment
+                                    </button>
                                 </div>
                             </form>
                         </div>

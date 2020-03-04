@@ -1,0 +1,21 @@
+.profile-img {
+    display: block;
+    position: relative;
+    &__upload {
+        position: absolute;
+        bottom: 0;
+        left: 25px;
+        margin: 10px auto;
+        color:#fff;
+        background-color: #a3a3a3;  
+        opacity: 0;
+        transition: 1s cubic-bezier(0.42, 0.66, 0.14, 1);
+    }
+
+    &:hover{
+        .profile-img__upload {
+            opacity: 1;
+        }
+    }
+}
+

@@ -24,7 +24,7 @@
 
                 <div class="flex-d row">
                     <div class="ml-auto mt-3">
-                        <button class="btn btn-danger">Save profile</button>
+                        <button class="btn btn-danger"> <i class="fas fa-save"></i> Save changes</button>
                     </div>
                 </div>
             </div>
