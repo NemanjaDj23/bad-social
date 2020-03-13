@@ -19,37 +19,28 @@ class ProfileController extends Controller
     {
         $posts = Post::orderBy('updated_at', 'desc')->get();
 
-        return view('profiles.index', array(
-            'posts' => $posts,
-        ));
+        return view('profiles.index')->with( 'posts', $posts );
     }
     
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
-        
         $posts = $user->posts()->orderBy('updated_at', 'desc')->get();
-        return view('profiles.show', array(
-            'user' => $user,
-            'posts' => $posts,
-        ));
+        return view('profiles.show')->with([ 'user' => $user, 'posts' => $posts, ]);
     }
 
-    public function edit($id) 
+    public function edit(User $user) 
     {
-        $user = User::find($id);
-        return view('profiles.edit')->with('user', $user);
+        return view('profiles.edit')->with( 'user', $user );
     }
 
-    public function update($id)
+    public function update(User $user)
     {
         $occupation = request('occupation');
         $description = request('description');
 
-        $user = User::find($id);
         $user->profile->occupation = $occupation;
         $user->profile->description = $description;
-        $user->profile->id = $id;
+        $user->profile->id = $user->id;
         $user->profile->update();
 
         return redirect('/profile/' . $user->id)->with('success', 'Profile has been updated successfully!');

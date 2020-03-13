@@ -28,6 +28,6 @@ Route::patch('/profile/{user}', 'ProfileController@update')->name('profiles.upda
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::patch('/posts/{post}', 'PostController@update')->name('posts.update');
-Route::get('/posts/post/delete/{id}', 'PostController@delete')->name('post.delete');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('post.destroy');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.store');

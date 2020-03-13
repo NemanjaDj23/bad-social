@@ -7,7 +7,6 @@
         @method('PATCH')
         <div class="row">
             <div class="col-8 offset-2">
-
                 <div class="row">
                     <h3>Edit Profile</h3>
                 </div>

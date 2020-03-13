@@ -31,22 +31,20 @@ class PostController extends Controller
         }
     }
 
-    public function show(\App\Post $post) 
+    public function show(Post $post) 
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show')->with('post', $post);
     }
 
-    public function edit($id) 
+    public function edit(Post $post) 
     {
-        $post = Post::find($id);
         return view('posts.edit')->with('post', $post);
     }
 
-    public function update($id)
+    public function update(Post $post)
     {
         $content = request('content');
-        $post = Post::find($id);
-
+    
         if(!empty($content))
         {
             $post->content = $content; 
@@ -61,8 +59,7 @@ class PostController extends Controller
         
     }
 
-    public function delete($id) {
-        $post = Post::find($id);
+    public function destroy(Post $post) {
         $post->delete();
         return back()->with('success', 'Post has been deleted successfully!');
     }
