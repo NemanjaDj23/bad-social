@@ -16,6 +16,7 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
+    // this function add post to the database
     public function store()
     {
         $content = request('content');
@@ -34,16 +35,19 @@ class PostController extends Controller
         }
     }
 
+    //this function returns the current post to the post show page 
     public function show(Post $post) 
     {
         return view('posts.show')->with('post', $post);
     }
 
+    // this function returns the current post to the post edit page
     public function edit(Post $post) 
     {
         return view('posts.edit')->with('post', $post);
     }
 
+    // this function update post
     public function update(Post $post)
     {
         $content = request('content');
@@ -62,6 +66,7 @@ class PostController extends Controller
         
     }
 
+    //this function delete post
     public function destroy(Post $post) {
         $post->delete();
         return back()->with('success', 'Post has been deleted successfully!');
