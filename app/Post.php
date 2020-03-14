@@ -3,19 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Post extends Model
 {
     public $timestamps = true;
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function($post) {
-            $post->comments()->delete();
-        });
-    }
+    protected $softCascade = ['comments'];
 
     public function user()
     {

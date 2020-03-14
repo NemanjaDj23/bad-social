@@ -8,6 +8,7 @@ use App\Post;
 
 class CommentController extends Controller
 {
+    // this function add comment to the database
     public function store(Request $request)
     {
         $comment = new Comment;

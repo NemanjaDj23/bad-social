@@ -8,8 +8,13 @@
             <div class="card mb-3">
                 <div class="row no-gutters flex-d align-items-end">
                     <div class="col-md-3 p-4">
-                        <a href="#" class="profile-img">
-                            <img src="/images/default-avatar.png" class="card-img" alt="defoult profil avatar">
+                        
+                        <a href="{{ url('/profile/'.$user->id.'/edit') }}" class="profile-img">    
+                            @if($user->profile->filename == null)
+                                <img src="{{url('/images/default-avatar.png')}}" class="card-img" alt="default profil photo">
+                            @else 
+                                <img src="{{url('uploads/'.$user->profile->filename)}}" class="card-img" alt="profil photo">
+                            @endif    
                             @if ($user->id == Auth::user()->id)
                                 <p class="rounded-pill px-2 py-1  profile-img__upload">Add image</p>
                             @endif

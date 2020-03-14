@@ -5,7 +5,13 @@
         <div class="p-3 border rounded-sm">
             <div class="row d-flex align-items-center">
                 <div class="col-md-2 p-4">
-                    <a href="{{ url('profile/'.$post->user_id) }}"><img src="/images/default-avatar.png" class="card-img rounded-circle" alt="defoult profil avatar"><a>
+                    <a href="{{ url('profile/'.$post->user_id) }}">
+                        @if($post->user->profile->filename == null)
+                            <img src="{{url('/images/default-avatar.png')}}" class="card-img rounded-circle " alt="default profil photo">
+                        @else 
+                            <img src="{{url('uploads/'.$post->user->profile->filename)}}" class="card-img rounded-circle" alt="profil photo">
+                        @endif 
+                    <a>
                 </div>
                 <div >
                     <h5 class="m-0"><a href="{{ url('profile/'.$post->user_id) }}" class="text-dark font-weight-bolder text-decoration-none">{{ $post->user->username}}</a></h5>

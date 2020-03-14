@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="/profile/{{ $user->id }}" method="post">
+    <form action="/profile/{{ $user->id }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row">
@@ -19,6 +19,11 @@
                 <div class="form-group row">
                     <label for="description" class="col-form-label">Description</label>
                     <textarea name="description" cols="30" rows="4" class="form-control" placeholder="Something about you...">{{ old('title') ?? $user->profile->description}}</textarea>
+                </div>
+
+                <div class="form-group row">
+                    <label for="profile_photo" class="col-form-label">Profile photo:</label>
+                    <input type="file" class="form-control border-0" name="profile_photo"/>
                 </div>
 
                 <div class="flex-d row">
