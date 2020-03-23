@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\User;
-use App\Post;
-use App\Profile;
 use Auth;
 
 class ProfileController extends Controller
@@ -16,14 +14,6 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');      
-    }
-
-    // this function retuns all posts
-    public function index()
-    {
-        $posts = Post::orderBy('updated_at', 'desc')->get();
-
-        return view('profiles.index')->with( 'posts', $posts );
     }
     
     // this function returns all posts from logged-in user
@@ -43,8 +33,8 @@ class ProfileController extends Controller
     public function update(Request $request, User $user)
     {
         request()->validate([
-            'occupation' => 'required',
-            'description' => 'required',
+            'occupation' => ['required', 'min:3', 'max:255'],
+            'description' => ['required', 'min:3'],
         ]);
         $photo = $request->file('profile_photo');
 

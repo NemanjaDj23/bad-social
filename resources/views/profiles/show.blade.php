@@ -54,7 +54,7 @@
                         <div class="card-header">Posts by {{ $user->name }} </div>
                     @endif
                     
-                    @include('posts.index')
+                    @include('posts.list')
                 </div>
             @endif
         </div>

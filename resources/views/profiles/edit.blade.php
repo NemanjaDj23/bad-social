@@ -13,12 +13,24 @@
 
                 <div class="form-group row">
                     <label for="occupation" class="col-form-label">Occupation</label>
-                    <input type="text" name="occupation" class="form-control" placeholder="Something about your occupation..." value="{{ old('title') ?? $user->profile->occupation}}">
+                    <input type="text" name="occupation" id="occupation" class="form-control @error('occupation') is-invalid @enderror" placeholder="Something about your occupation..." value="{{ old('occupation') ?? $user->profile->occupation}}">
+                    @error('occupation')
+                        <div class="invalid-feedback ">{{$errors->first('occupation')}}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group row">
                     <label for="description" class="col-form-label">Description</label>
-                    <textarea name="description" cols="30" rows="4" class="form-control" placeholder="Something about you...">{{ old('title') ?? $user->profile->description}}</textarea>
+                    <textarea 
+                        name="description" 
+                        id="description" 
+                        cols="30" rows="4" 
+                        class="form-control @error('description') is-invalid @enderror" 
+                        placeholder="Something about you...">{{ old('description') ?? $user->profile->description}}
+                    </textarea>
+                    @error('description')
+                        <div class="invalid-feedback ">{{$errors->first('description')}}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group row">

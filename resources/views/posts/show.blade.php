@@ -20,7 +20,7 @@
                 </div>
             </div>
             
-            <p class="mt-3">{{$post->content}}</p><br>
+            <p class="mt-3">{{$post->post_body}}</p><br>
 
             <small>Written on {{ $post->created_at->format("d.m.Y.") }}</small>
             <small>{{ $post->created_at->diffForHumans() }}</small>

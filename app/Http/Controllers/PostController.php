@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\User;
 use App\Post;
 use Auth;
 
@@ -16,23 +15,23 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
+    // this function returns all posts
+    public function index()
+    {
+        $posts = Post::orderBy('updated_at', 'desc')->get();
+
+        return view('posts.index')->with( 'posts', $posts );
+    }
+
     // this function add post to the database
     public function store()
     {
-        $content = request('content');
-        $id = Auth::user()->id;
+        Post::create(request()->validate([
+            'post_body' => ['required', 'min:3'],
+            'user_id' => ['required'],
+        ]));
 
-        if (!empty($content)) {
-            $post = new Post;
-            $post->user_id = $id;
-            $post->content = $content;
-            $post->save();
-
-            return back()->with('success', 'Post published!');
-        }
-        else {
-            return back()->with('error', 'Nothing to publish!');
-        }
+        return back()->with('success', 'Post published!');
     }
 
     //this function returns the current post to the post show page 
@@ -50,20 +49,11 @@ class PostController extends Controller
     // this function update post
     public function update(Post $post)
     {
-        $content = request('content');
-    
-        if(!empty($content))
-        {
-            $post->content = $content; 
-            $post->update();
+        $post->update(request()->validate([
+            'post_body' => ['required', 'min:3'],
+        ]));
 
-            return redirect('/index')->with('success', 'Post has been updated successfully!');
-        }
-        else 
-        {
-            return redirect('/index')->with('error', 'Empty post can not been updated!');
-        }
-        
+        return redirect('/posts')->with('success', 'Post has been updated successfully!');
     }
 
     //this function delete post

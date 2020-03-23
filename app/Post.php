@@ -3,13 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class Post extends Model
 {
     public $timestamps = true;
 
-    protected $softCascade = ['comments'];
+    protected $guarded = [];
 
     public function user()
     {

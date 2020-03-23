@@ -11,7 +11,18 @@
                     <form action="/posts/{{$post->id}}" method="post">
                         @method('PATCH')
                         @csrf
-                        <textarea name="content" cols="30" rows="4" class="form-control" placeholder="What's on your mind...">{{$post->content}}</textarea>
+                        <textarea 
+                            name="post_body" 
+                            id="post_body"
+                            cols="30" rows="4" 
+                            class="form-control @error('post_body') is-invalid @enderror" 
+                            placeholder="What's on your mind...">{{ old('post_body') ?? $post->post_body}}
+                        </textarea>
+                        
+                        @error('post_body')
+                            <div class="invalid-feedback ">{{$errors->first('post_body')}}</div>
+                        @enderror
+                        
                         <br>
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-edit"></i> Update post
