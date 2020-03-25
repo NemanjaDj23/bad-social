@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\User;
+use App\Category;
 use Auth;
 
-class ProfileController extends Controller
+class UsersController extends Controller
 {
 
     public function __construct()
@@ -19,14 +20,22 @@ class ProfileController extends Controller
     // this function returns all posts from logged-in user
     public function show(User $user)
     {
-        $posts = $user->posts()->orderBy('updated_at', 'desc')->get();
-        return view('profiles.show')->with([ 'user' => $user, 'posts' => $posts, ]);
+        if(request('category'))
+        {
+            $posts = Category::where('name', request('category'))->firstOrFail()->posts()->users()->get();
+        } else {
+            $posts = $user->posts()->orderBy('updated_at', 'desc')->get();
+        }
+
+        $categories = Category::all();
+
+        return view('users.show')->with([ 'user' => $user, 'posts' => $posts, 'categories' => $categories, ]);
     }
 
     // this function returns the logged-in user 
     public function edit(User $user) 
     {
-        return view('profiles.edit')->with( 'user', $user );
+        return view('users.edit')->with( 'user', $user );
     }
 
     // this function update user profile photo
@@ -42,23 +51,23 @@ class ProfileController extends Controller
         if ($photo)
         {
             // this row will delete previous profile photo if exist in the uploads folder
-            Storage::disk('public')->delete($user->profile->filename);
+            Storage::disk('public')->delete($user->filename);
 
             // this rows will add a profile photo in public/uploads folder
             $extension = $photo->getClientOriginalExtension();
             Storage::disk('public')->put($photo->getFilename().'.'.$extension,  File::get($photo));
             
             // this code will add data type, original filename and encrypted filename to database 
-            $user->profile->mime = $photo->getClientMimeType();
-            $user->profile->original_filename = $photo->getClientOriginalName();
-            $user->profile->filename = $photo->getFilename().'.'.$extension;
+            $user->mime = $photo->getClientMimeType();
+            $user->original_filename = $photo->getClientOriginalName();
+            $user->filename = $photo->getFilename().'.'.$extension;
         }
         
-        $user->profile->occupation = $request->occupation;
-        $user->profile->description = $request->description;
-        $user->profile->id = $user->id;
-        $user->profile->update();
+        $user->occupation = $request->occupation;
+        $user->description = $request->description;
+        $user->id = $user->id;
+        $user->update();
 
-        return redirect('/profile/'.$user->id)->with('success', 'Profile has been updated successfully!');
+        return redirect('/users/'.$user->id)->with('success', 'Profile has been updated successfully!');
     }
 }

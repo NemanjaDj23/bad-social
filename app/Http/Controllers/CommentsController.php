@@ -7,7 +7,7 @@ use App\Comment;
 use App\Post;
 use Auth;
 
-class CommentController extends Controller
+class CommentsController extends Controller
 {
     // this function add comment to the database
     public function store()

@@ -5,6 +5,20 @@
     <div class="card-body">
         <form action="/posts" method="post">
             @csrf
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label for="category" class="input-group-text">Categories</label>
+                </div>
+                <select name="categories[]" id="category" class="custom-select @error('categories') is-invalid @enderror" multiple size="2">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('categories')
+                    <div class="invalid-feedback ">{{$errors->first('categories')}}</div>
+                @enderror
+            </div>
             <textarea 
                 name="post_body"  
                 cols="30" rows="4" 

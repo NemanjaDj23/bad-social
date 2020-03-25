@@ -17,18 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/posts', 'PostController@index')->name('posts.index');
-Route::post('/posts', 'PostController@store')->name('posts.store');
-Route::get('/posts/create', 'PostController@create')->name('posts.create');
-Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
-Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
-Route::patch('/posts/{post}', 'PostController@update')->name('posts.update');
-Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+Route::get('/posts', 'PostsController@index')->name('posts.index');
+Route::post('/posts', 'PostsController@store')->name('posts.store');
+Route::get('/posts/{post}', 'PostsController@show')->name('posts.show');
+Route::get('/posts/{post}/edit', 'PostsController@edit')->name('posts.edit');
+Route::patch('/posts/{post}', 'PostsController@update')->name('posts.update');
+Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
 
-Route::get('/profile/{user}', 'ProfileController@show')->name('profiles.show');
-Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profiles.edit');
-Route::patch('/profile/{user}', 'ProfileController@update')->name('profiles.update');
+Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 
-
-
-Route::post('/comment/store', 'CommentController@store')->name('comment.store');
+Route::post('/comment/store', 'CommentsController@store')->name('comment.store');

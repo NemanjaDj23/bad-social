@@ -9,11 +9,11 @@
                 <div class="row no-gutters flex-d align-items-end">
                     <div class="col-md-3 p-4">
                         
-                        <a href="{{ url('/profile/'.$user->id.'/edit') }}" class="profile-img">    
-                            @if($user->profile->filename == null)
+                        <a href="{{ url('/users/'.$user->id.'/edit') }}" class="profile-img">    
+                            @if($user->filename == null)
                                 <img src="{{url('/images/default-avatar.png')}}" class="card-img" alt="default profil photo">
                             @else 
-                                <img src="{{url('uploads/'.$user->profile->filename)}}" class="card-img" alt="profil photo">
+                                <img src="{{url('uploads/'.$user->filename)}}" class="card-img" alt="profil photo">
                             @endif    
                             @if ($user->id == Auth::user()->id)
                                 <p class="rounded-pill px-2 py-1  profile-img__upload">Add image</p>
@@ -23,14 +23,14 @@
                     <div class="col-md-9">
                         <div class="card-body">
                             <h4 class="card-title mb-1">{{ $user->name }} {{ $user->surname }}</h4>
-                            <p class="card-text text-secondary">{{$user->profile->occupation}}</p>
+                            <p class="card-text text-secondary">{{$user->occupation}}</p>
                         </div>
                     </div>
                     <div class="d-flex flex-column col-md-12 p-4">
                         <h5 class="card-title">About</h5>
-                        <p class="card-text text-secondary">{{$user->profile->description}} </p>
+                        <p class="card-text text-secondary">{{$user->description}} </p>
                         @if ($user->id == Auth::user()->id)
-                            <a href="{{ url('/profile/'.$user->id.'/edit') }}" class="ml-auto btn btn-danger"><i class="fas fa-user-edit"></i> Edit profile</a>
+                            <a href="{{ url('/users/'.$user->id.'/edit') }}" class="ml-auto btn btn-danger"><i class="fas fa-user-edit"></i> Edit profile</a>
                         @endif
                     </div>
                 </div>

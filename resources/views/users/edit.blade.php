@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="/profile/{{ $user->id }}" method="post" enctype="multipart/form-data">
+    <form action="/users/{{ $user->id }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="row">
@@ -13,7 +13,7 @@
 
                 <div class="form-group row">
                     <label for="occupation" class="col-form-label">Occupation</label>
-                    <input type="text" name="occupation" id="occupation" class="form-control @error('occupation') is-invalid @enderror" placeholder="Something about your occupation..." value="{{ old('occupation') ?? $user->profile->occupation}}">
+                    <input type="text" name="occupation" id="occupation" class="form-control @error('occupation') is-invalid @enderror" placeholder="Something about your occupation..." value="{{ old('occupation') ?? $user->occupation}}">
                     @error('occupation')
                         <div class="invalid-feedback ">{{$errors->first('occupation')}}</div>
                     @enderror
@@ -26,7 +26,7 @@
                         id="description" 
                         cols="30" rows="4" 
                         class="form-control @error('description') is-invalid @enderror" 
-                        placeholder="Something about you...">{{ old('description') ?? $user->profile->description}}
+                        placeholder="Something about you...">{{ old('description') ?? $user->description}}
                     </textarea>
                     @error('description')
                         <div class="invalid-feedback ">{{$errors->first('description')}}</div>
