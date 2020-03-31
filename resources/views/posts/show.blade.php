@@ -27,8 +27,8 @@
             </p>
             <p class="mt-3">{{$post->post_body}}</p><br>
 
-            <small>Written on {{ $post->created_at->format("d.m.Y.") }}</small>
-            <small>{{ $post->created_at->diffForHumans() }}</small>
+            <small>Written on {{ $post->updated_at->format("d.m.Y.") }}</small>
+            <small>{{ $post->updated_at->diffForHumans() }}</small>
         </div>
     </div>
 </div>

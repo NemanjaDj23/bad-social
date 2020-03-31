@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    protected $touches = ['posts'];
+
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class)->withTimestamps();
     }
 }

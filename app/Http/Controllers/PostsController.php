@@ -64,16 +64,30 @@ class PostsController extends Controller
     // this function returns the current post to the post edit page
     public function edit(Post $post) 
     {
-        return view('posts.edit')->with('post', $post);
+        $categories = Category::all();
+        $selectedCategories = $post->categories()->pluck('category_id')->all();
+
+        return view('posts.edit')->with([ 'post' => $post, 'categories' => $categories, 'selectedCategories' => $selectedCategories,]);
     }
 
     // this function update post
-    public function update(Post $post)
+    public function update(Request $request, Post $post)
     {
-        $post->update(request()->validate([
+        request()->validate([
             'post_body' => ['required', 'min:3'],
-        ]));
+            'categories' => ['exists:categories,id'],
+        ]);
 
+        $post->post_body = $request->post_body;
+        $post->update();
+
+        $post->categories()->detach();
+        if ($categories = $request->categories){
+            foreach($categories as $category) {
+                $post->categories()->syncWithoutDetaching($category, ['post_id' => $post->id, 'category_id' => $category]);
+            }
+        }
+        
         return redirect('/posts')->with('success', 'Post has been updated successfully!');
     }
 

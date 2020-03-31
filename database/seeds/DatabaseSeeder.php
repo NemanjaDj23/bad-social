@@ -11,6 +11,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 50)->create();
+        $this->call([
+            UsersTabeleSeeder::class,
+            PostsTabeleSeeder::class,
+            CategoriesTabeleSeeder::class,
+        ]);
+
+        //Get array of ids
+        $postIds = DB::table('posts')->pluck('id')->all();
+        $categoryIds = DB::table('categories')->pluck('id')->all();
+
+        //Seed category_post table with max 40 entries
+        foreach ((range(1, 30)) as $index) 
+        {
+        DB::table('category_post')->updateOrInsert(
+            [
+            'post_id' => $postIds[array_rand($postIds)],
+            'category_id' => $categoryIds[array_rand($categoryIds)]
+            ]
+        );
+        }
     }
 }
