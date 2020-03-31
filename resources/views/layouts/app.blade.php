@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-fixed-top">
             <div class="container">
                 <a class="navbar-brand d-flex" href="{{ url('/posts') }}">
                     <div><img src="/icon/bad-logo.ico" alt="badsocial-logo" class="pr-2"></div>

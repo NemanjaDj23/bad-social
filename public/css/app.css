@@ -10904,3 +10904,19 @@ a.text-dark:focus {
   opacity: 1;
 }
 
+.navbar-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.categories {
+  position: fixed;
+  z-index: 2;
+}
+
+.categories ul {
+  list-style-type: none;
+}
+
