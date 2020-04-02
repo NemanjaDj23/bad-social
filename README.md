@@ -120,7 +120,7 @@
 
 
 
-<h4>Step 10. [Optional]: Seed the database<h4>
+<h4>Step 10. [Optional]: Seed the database</h4>
 <p>
     If your want seeding file setup, then now is the time to run the seed, which fills your database with starter or dummy data.
 </p>
