@@ -61,9 +61,9 @@
 
 
 
-<h4>Step 5. Create a copy of your .env file<h4>
+<h4>Step 5. Create a copy of your .env file</h4>
 <p>
-    .env files are not generally committed to source control for security reasons. But there is a .env.example which is a template of the .env file that the project expects us to have. So we will make a copy of the .env.example file and create a .env file that we can start to fill out to do things like database configuration in the next few steps.
+    <code>.env</code> files are not generally committed to source control for security reasons. But there is a .env.example which is a template of the .env file that the project expects us to have. So we will make a copy of the .env.example file and create a .env file that we can start to fill out to do things like database configuration in the next few steps.
 </p>
 <pre>
     cp .env.example .env
