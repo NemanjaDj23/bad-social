@@ -6,15 +6,15 @@
 <h2>Installation</h2>
 
 <h3>Linux</h3>
-<h4>Step 1. Clone GitHub repo for this project locally
+<h4>Step 1. Clone GitHub repo for this project locally</h4>
 
 <p>
     Find a location on your computer where you want to store the project and run the following command. 
-
-    <em>
-    Note: Make sure you have git installed locally on your computer first.
-    </em>
 </p>
+<em>
+    Note: Make sure you have git installed locally on your computer first.
+</em>
+
 
 <pre>git clone linktogithubrepo.com/ projectName</pre>
 
