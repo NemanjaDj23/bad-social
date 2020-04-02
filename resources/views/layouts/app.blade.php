@@ -12,6 +12,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
+    <!-- Scripts include jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- Scripts for fontawesome icons-->
     <script src="https://kit.fontawesome.com/972afce2fa.js" crossorigin="anonymous"></script>

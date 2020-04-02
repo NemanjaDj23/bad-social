@@ -10911,6 +10911,11 @@ a.text-dark:focus {
   z-index: 1030;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #e3342f;
+}
+
 .categories {
   position: fixed;
   z-index: 2;
