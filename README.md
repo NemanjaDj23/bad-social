@@ -30,7 +30,7 @@
 
 <h4>Step 2. cd into your project</h4>
 <p>
-    You will need to be inside that project file to enter all of the rest of the commands. So remember to type <code>cd projectName<code> to move your terminal working location to the project file we just barely created. (Of course substitute “projectName” in the command above, with the name of the folder you created in the previous step).
+    You will need to be inside that project file to enter all of the rest of the commands. So remember to type <code>cd projectName</code> to move your terminal working location to the project file we just barely created. (Of course substitute “projectName” in the command above, with the name of the folder you created in the previous step).
 </p>
 
 
