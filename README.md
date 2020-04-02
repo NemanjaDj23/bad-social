@@ -14,9 +14,11 @@
 
 <pre>git clone linktogithubrepo.com/ projectName</pre>
 
-<em>
-    <strong>Note:</strong> Make sure you have git installed locally on your computer first.
-</em>
+<p>
+    <em>
+        <strong>Note:</strong> Make sure you have git installed locally on your computer first.
+    </em>
+</p>
 <p>
     To get the link to the repo, just visit the github page and click on the green “clone or download” button on the right hand side. This will reveal a url that you will replace in the linktogithub.com part of the snippet above.
 </p>
