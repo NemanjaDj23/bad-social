@@ -122,16 +122,13 @@
 
 <h4>Step 10. [Optional]: Seed the database</h4>
 <p>
-    If your want seeding file setup, then now is the time to run the seed, which fills your database with starter or dummy data.
-</p>
-<p>
     After the migrations are complete and you have the database structure required, then you can seed the database (which means add dummy data to it).
 </p>
 <pre>
     php artisan db:seed
 </pre>
 <p>
-    This will create 20 randomly generated users, 50 randomly generated posts and 11 categories in your database. Also, this command will fill pivot category_post table. 
+    This will create 20 randomly generated users, 50 randomly generated posts and 11 categories in your database. Also, this command will fill the pivot category_post table. 
 </p>
 <p>
     If you want to log in as a user, grab an email address from the database and use “12345678” as the password to log in as that user. That is the default password I generally use.
